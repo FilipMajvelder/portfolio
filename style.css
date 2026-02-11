@@ -269,7 +269,7 @@ img{ display:block; width:100%; height:auto; object-fit:cover; }
 .hero-bg{
   position:absolute;
   inset:0;
-  background: url("img/event2.jpeg") center 35%/cover no-repeat;
+  background: url("img/event2.JPEG") center 35%/cover no-repeat;
 
   filter: saturate(0.85) contrast(1.08) brightness(0.58);
   transform: scale(1.06);
@@ -611,4 +611,5 @@ h2{
 
 @media (max-width: 420px){
   .btn{ width: 100%; text-align:center; }
+
 }
