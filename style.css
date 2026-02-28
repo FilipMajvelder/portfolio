@@ -256,105 +256,191 @@ img{ display:block; width:100%; height:auto; object-fit:cover; }
 
 
 /* =========================
-   HERO (EDITORIAL POSTER)
+   HERO (POLISHED) — SPLIT PANEL
 ========================= */
-.hero{
+
+.hero-split{
   position: relative;
   min-height: 78vh;
-  padding: 0;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-/* background layer */
-.hero-bg{
+/* background */
+.hero-split .hero-bg{
   position:absolute;
   inset:0;
-  background: url("img/event2.JPEG") center 35%/cover no-repeat;
+  background: url("img/event2.jpeg") center 30%/cover no-repeat;
 
-  filter: saturate(0.85) contrast(1.08) brightness(0.58);
-  transform: scale(1.06);
-  transform-origin: center;
-
+  /* jemnější grading + víc “film” */
+  filter: saturate(0.92) contrast(1.08) brightness(0.68);
+  transform: scale(1.05);
   will-change: transform, filter;
 }
 
-/* vignette + readability */
-.hero::before{
+/* overlay: editorial vignette + hloubka */
+.hero-split::before{
   content:"";
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 40% 35%, rgba(0,0,0,0.10), rgba(0,0,0,0.80) 70%),
-    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.70)),
+    radial-gradient(circle at 18% 45%, rgba(0,0,0,0.12), rgba(0,0,0,0.88) 72%),
+    radial-gradient(circle at 78% 35%, rgba(200,162,74,0.10), transparent 55%),
+    linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(40,40,40,0.22) 28%, rgba(0,0,0,0.74) 100%),
     linear-gradient(135deg, rgba(200,162,74,0.10), rgba(122,90,47,0.06));
   pointer-events:none;
+  z-index: 1;
 }
 
-/* subtle grain */
-.hero::after{
+/* grain */
+.hero-split::after{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity: 0.12;
+  opacity: 0.10;
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
+  z-index: 2;
 }
 
-.hero-inner{
+/* wrapper */
+.hero-wrap{
+  position: relative;
+  z-index: 3;
+  height: 78vh;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding: 56px clamp(16px, 4vw, 64px);
+}
+
+/* panel – víc “designed”, méně box */
+.hero-panel{
+  width: min(920px, 92vw);
+  padding: 28px 28px 22px;
+  border-radius: 30px;
+
+  background:
+    linear-gradient(180deg, rgba(232,226,214,0.10), rgba(232,226,214,0.05));
+  border: 1px solid rgba(232,226,214,0.10);
+
+  box-shadow:
+    0 30px 120px rgba(0,0,0,0.62),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* “glow ring” bez tvrdýho outline */
+.hero-panel::before{
+  content:"";
   position:absolute;
-  z-index:2;
-  top: 46px;
-  left: 56px;
-  width: min(1100px, 92vw);
+  inset:-2px;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255,255,255,0.18), transparent 55%),
+    radial-gradient(circle at 85% 78%, rgba(200,162,74,0.16), transparent 58%),
+    linear-gradient(135deg, rgba(200,162,74,0.18), rgba(255,255,255,0.06), rgba(122,90,47,0.14));
+  opacity: 0.55;
+  pointer-events:none;
+  mix-blend-mode: screen;
 }
 
-/* HEADLINE (poster) */
-.hero-title{
+/* jemný “shine sweep” (dělá to premium) */
+.hero-panel::after{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  transform: rotate(12deg) translateX(-28%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.10) 45%, transparent 70%);
+  opacity: 0.22;
+  pointer-events:none;
+}
+
+/* kicker – víc editorial, menší a čistší */
+.hero-kicker{
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  text-align: center;
+  color: rgba(245,245,245,0.68);
+  margin-bottom: 18px;
+}
+
+/* headline – mírně lepší proporce */
+.hero-title2{
   font-family: "Playfair Display", serif;
   text-transform: uppercase;
+  line-height: 0.90;
+  letter-spacing: 0.015em;
+  font-weight: 680;
+  text-align: center;
 
-  font-size: clamp(4.4rem, 8vw, 7.6rem);
-  line-height: 0.86;
-  letter-spacing: 0.01em;
-  font-weight: 600;
-
-  color: var(--text);
-  text-shadow: 0 24px 90px rgba(0,0,0,0.78);
+  font-size: clamp(2.9rem, 4.4vw, 4.9rem);
   margin: 0;
+
+  text-shadow: 0 18px 70px rgba(0,0,0,0.62);
 }
 
-/* řádky */
-.hero-title .t1{ display:inline-block; }
-.hero-title .t2{ display:inline-block; margin-top: 24px; }
-.hero-title .t3{
-  display:inline-block;
-  margin-top: 24px;
-  font-weight: 560;
-  letter-spacing: 0.03em;
-  opacity: 0.88;
+.hero-title2 .amp{
+  opacity: 0.92;
 }
 
-/* actions – bez hacku 200px */
-.hero-actions{
+/* tags – center + “pills” konzistentní spacing */
+.hero-tags{
   margin-top: 18px;
-  display:flex;
-  gap: 12px;
+  display: flex;
+  justify-content: center;
   flex-wrap:wrap;
+  gap: 12px;
 }
 
-/* credits line */
-.hero-credits{
-  margin-top: 14px;
-  display:flex;
-  gap: 18px;
-  flex-wrap:wrap;
-  color: rgba(245,245,245,0.55);
-  font-size: 0.92rem;
-  letter-spacing: 0.06em;
+.hero-tags span{
+  font-size: 0.74rem;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
+  color: rgba(245,245,245,0.62);
+
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.22);
+
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
 }
+
+/* actions – dej níž, ať to dýchá a je to “call to action” */
+.hero-panel .hero-actions{
+  margin-top: 16px;
+  display:flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* mobile: panel dolů a center */
+@media (max-width: 820px){
+  .hero-wrap{
+    height: auto;
+    padding: 84px 16px 56px;
+    justify-content: center;
+  }
+
+  .hero-panel{
+    width: min(640px, 92vw);
+    padding: 24px 18px 18px;
+  }
+
+  .hero-title2{
+    font-size: clamp(2.5rem, 8vw, 3.6rem);
+  }
+}
+
 
 /* =========================
    VINTAGE MODERN BUTTONS
@@ -611,5 +697,4 @@ h2{
 
 @media (max-width: 420px){
   .btn{ width: 100%; text-align:center; }
-
 }
