@@ -89,37 +89,64 @@
     </section>
 
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="section">
-      <h2>Portfolio</h2>
+<!-- PORTFOLIO -->
+    <section class="portfolio" id="portfolio">
+      <div class="section-head">
+        <h2>Portfolio</h2>
+        <p>Vybrané projekty: muzikál, koncert v kostele, LED (soon).</p>
+      </div>
 
-      <div class="masonry">
-        <!-- klidně zatím prázdné placeholdery -->
-        <a class="tile" href="#">
-          <div class="tile-ph"></div>
-          <div class="tile-meta">
-            <div class="tile-title">Koncert / Show</div>
-            <div class="tile-sub">Osvětlení • 2026</div>
-          </div>
-        </a>
+      <div class="tiles">
+        <!-- TILE 1 -->
+        <button class="tile" data-gallery="musical" aria-label="Open gallery: Musical"
+          style="--bg:url('img/jchs-scena/musical_1.jpg')">
+          <span class="tile__label">
+            <span class="tile__title">Muzikál JCHS</span>
+            <span class="tile__meta">Lighting • Stage • Drama</span>
+          </span>
+        </button>
 
-        <a class="tile" href="#">
-          <div class="tile-ph"></div>
-          <div class="tile-meta">
-            <div class="tile-title">LED wall content</div>
-            <div class="tile-sub">VJ • generativní / dynamické</div>
-          </div>
-        </a>
+        <!-- TILE 2 -->
+        <button class="tile" data-gallery="church" aria-label="Open gallery: Church concert"
+          style="--bg:url('img/church/cover.jpg')">
+          <span class="tile__label">
+            <span class="tile__title">Koncert v kostele</span>
+            <span class="tile__meta">Atmosphere • Warm tones</span>
+          </span>
+        </button>
 
-        <a class="tile" href="#">
-          <div class="tile-ph"></div>
-          <div class="tile-meta">
-            <div class="tile-title">Kultura / Festival</div>
-            <div class="tile-sub">Light design</div>
-          </div>
-        </a>
+        <!-- TILE 3 -->
+        <button class="tile tile--disabled" aria-label="LED gallery coming soon" style="--bg:url('img/led/cover.jpg')">
+          <span class="tile__label">
+            <span class="tile__title">LED instalace</span>
+            <span class="tile__meta">Coming soon</span>
+          </span>
+        </button>
       </div>
     </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightbox__backdrop" data-close></div>
+
+      <div class="lightbox__panel" role="dialog" aria-modal="true" aria-label="Gallery viewer">
+        <button class="lightbox__close" type="button" aria-label="Close gallery" data-close>✕</button>
+
+        <div class="lightbox__main">
+          <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous photo"
+            data-prev>‹</button>
+
+          <figure class="lightbox__figure">
+            <img class="lightbox__img" id="lightboxImg" alt="" />
+            <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>
+          </figure>
+
+          <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next photo" data-next>›</button>
+        </div>
+
+        <div class="lightbox__thumbs" id="lightboxThumbs" aria-label="Thumbnails"></div>
+      </div>
+    </div>
 
     <!-- ABOUT -->
     <section id="about" class="section">
